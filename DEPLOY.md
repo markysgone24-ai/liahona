@@ -1,15 +1,19 @@
 # Deployment status
 
+## LIVE
+- **URL: https://markysgone24-ai.github.io/liahona/**
+- Host: GitHub Pages (source: `main` branch, `/` root), HTTPS enforced
+- Auto-deploy: every `git push` to `main` rebuilds the site automatically
+- `.nojekyll` added so all files are served as-is
+
 ## GitHub
 - Repo: https://github.com/markysgone24-ai/liahona
 - Branch: main
 - Auto-commit: done. From now on every change made here will be committed/pushed.
 
 ## Vercel
-- Tried REST/CLI with provided token — token appears valid but CLI/API creation blocked by permissions ("You don't have permission to create a project" / limited token).
-- Static site: just open `index.html` + assets; no build needed.
-- Recommended: Vercel → New Project → Import `markysgone24-ai/liahona` (GitHub integration). That gives auto-deploy on every push to `main`.
-- Manual fallback: drag the entire project folder (`stitch_liahona_scripture_study_assistant`) to https://vercel.com/new for instant deploy.
+- NOT USED. The provided token is a restricted token (`limited":true`): only `GET /v2/user` works; projects/teams/create all return 403 ("You don't have permission to create a project").
+- To use Vercel instead, generate a full-access token at https://vercel.com/account/tokens (or import the repo in the dashboard). Not required, since GitHub Pages already serves the site.
 
 ## Supabase
 - Project URL: https://jevszvneuftydyobpxgs.supabase.com
