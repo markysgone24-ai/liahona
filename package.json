@@ -1,0 +1,20 @@
+{
+  "name": "stitch-liahona",
+  "version": "1.0.0",
+  "description": "Liahona — offline Book of Mormon scripture study assistant",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "verify": "node tools/verify-reader.js",
+    "audit": "node tools/audit-a11y.js",
+    "font": "node tools/font-probe.js",
+    "test:ui": "node tools/uitest.js",
+    "test:routes": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/smoke.ps1",
+    "skills": "node tools/validate-skills.js",
+    "check": "npm run verify && npm run audit && npm run font"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "playwright-core": "^1.63.0"
+  }
+}

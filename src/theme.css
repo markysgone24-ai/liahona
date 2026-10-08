@@ -1,0 +1,978 @@
+/* ==========================================================================
+   Liahona — theme tokens & reading typography
+   Palettes follow DESIGN.md: Parchment (day) / Sepia (ambient) / Night
+   ========================================================================== */
+
+@layer base {
+  :root,
+  [data-theme='parchment'] {
+    --surface: 253 249 241;
+    --surface-dim: 221 218 210;
+    --surface-bright: 253 249 241;
+    --surface-lowest: 255 255 255;
+    --surface-low: 247 243 235;
+    --surface-container: 241 237 230;
+    --surface-high: 236 232 224;
+    --surface-highest: 230 226 218;
+    --on-surface: 28 28 23;
+    --on-surface-variant: 68 71 77;
+    --inverse-surface: 49 48 43;
+    --inverse-on-surface: 244 240 232;
+    --outline: 117 119 126;
+    --outline-variant: 197 198 206;
+    --primary: 5 21 43;
+    --on-primary: 255 255 255;
+    --primary-container: 27 42 65;
+    --on-primary-container: 130 145 173;
+    --secondary: 117 91 0;
+    --on-secondary: 255 255 255;
+    --secondary-container: 254 210 85;
+    --on-secondary-container: 115 90 0;
+    --error: 186 26 26;
+    --on-error: 255 255 255;
+    --error-container: 255 218 214;
+    --on-error-container: 147 0 10;
+    --surface-tint: 80 95 121;
+    --accent: 201 162 39;
+    --shadow: 27 42 65;
+    --hl-gold: rgb(212 175 55 / 0.22);
+    --hl-green: rgb(90 158 111 / 0.20);
+    --hl-blue: rgb(96 145 199 / 0.20);
+    --hl-rose: rgb(201 118 118 / 0.20);
+    color-scheme: light;
+  }
+
+  [data-theme='sepia'] {
+    --surface: 244 236 216;
+    --surface-dim: 223 205 183;
+    --surface-bright: 250 243 228;
+    --surface-lowest: 250 246 238;
+    --surface-low: 240 230 208;
+    --surface-container: 234 223 202;
+    --surface-high: 228 215 191;
+    --surface-highest: 223 205 183;
+    --on-surface: 44 34 30;
+    --on-surface-variant: 107 91 82;
+    --inverse-surface: 62 48 42;
+    --inverse-on-surface: 244 236 216;
+    --outline: 128 110 100;
+    --outline-variant: 214 196 173;
+    --primary: 44 34 30;
+    --on-primary: 250 246 238;
+    --primary-container: 59 47 40;
+    --on-primary-container: 216 200 182;
+    --secondary: 138 97 0;
+    --on-secondary: 255 255 255;
+    --secondary-container: 217 165 32;
+    --on-secondary-container: 74 52 0;
+    --error: 140 47 31;
+    --on-error: 255 255 255;
+    --error-container: 253 219 212;
+    --on-error-container: 92 26 15;
+    --surface-tint: 107 91 82;
+    --accent: 184 134 11;
+    --shadow: 79 60 48;
+    --hl-gold: rgb(184 134 11 / 0.24);
+    --hl-green: rgb(94 140 96 / 0.22);
+    --hl-blue: rgb(94 126 160 / 0.22);
+    --hl-rose: rgb(180 105 95 / 0.22);
+    color-scheme: light;
+  }
+
+  [data-theme='night'] {
+    --surface: 14 23 36;
+    --surface-dim: 9 15 24;
+    --surface-bright: 20 32 49;
+    --surface-lowest: 10 17 28;
+    --surface-low: 19 30 45;
+    --surface-container: 22 34 52;
+    --surface-high: 27 41 60;
+    --surface-highest: 31 46 69;
+    --on-surface: 230 237 245;
+    --on-surface-variant: 138 155 176;
+    --inverse-surface: 230 237 245;
+    --inverse-on-surface: 14 23 36;
+    --outline: 107 127 150;
+    --outline-variant: 37 56 82;
+    --primary: 230 237 245;
+    --on-primary: 14 23 36;
+    --primary-container: 34 52 76;
+    --on-primary-container: 184 199 229;
+    --secondary: 226 192 86;
+    --on-secondary: 14 23 36;
+    --secondary-container: 74 58 18;
+    --on-secondary-container: 255 224 142;
+    --error: 255 180 171;
+    --on-error: 14 23 36;
+    --error-container: 122 40 32;
+    --on-error-container: 255 218 214;
+    --surface-tint: 184 199 229;
+    --accent: 226 192 86;
+    --shadow: 5 10 16;
+    --hl-gold: rgb(226 192 86 / 0.20);
+    --hl-green: rgb(96 168 126 / 0.20);
+    --hl-blue: rgb(110 156 209 / 0.20);
+    --hl-rose: rgb(214 130 130 / 0.20);
+    color-scheme: dark;
+  }
+}
+
+@layer base {
+  html,
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+  .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+  ::-webkit-scrollbar { width: 0; height: 0; }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  button { font: inherit; color: inherit; }
+}
+
+/* ============================================================ typography */
+/* NOTE: the Tailwind Play CDN cannot resolve theme() inside an external
+   stylesheet, so font stacks and spacing are written out literally here. */
+
+:root {
+  --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* The face Gospel Library sets scripture in: Ensign Serif where the foundry
+     font is available, otherwise the Palatino book face it falls back to. */
+  --font-scripture: 'Ensign:Serif', 'McKay', Palatino, 'Palatino Linotype', Palatino-Roman,
+    var(--font-serif), serif;
+  --reader-gutter: 1.15rem;
+  --reader-max: 45rem;
+}
+
+@media (min-width: 640px) {
+  :root { --reader-gutter: 1.5rem; }
+}
+
+/* the measure is capped, not the gutter, so a wide screen never shortens the
+   line — it just centres it */
+@media (min-width: 1024px) {
+  :root { --reader-gutter: 2rem; }
+}
+
+/* Scripture text follows the classic Gospel Library setting: a serif measure at
+   18px on 1.6 leading, with every verse its own block. The spacing between
+   verses is margin, not punctuation — there is no separator glyph. */
+.scripture-body {
+  --scripture-size: 18px;
+  --scripture-leading: 1.7;
+  --scripture-scale: 1;
+
+  font-family: var(--font-scripture);
+  font-size: calc(var(--scripture-size) * var(--scripture-scale));
+  line-height: var(--scripture-leading);
+  font-weight: 400;
+  letter-spacing: normal;
+  color: rgb(var(--on-surface));
+  max-width: none;
+  text-align: left;
+  margin: 0;
+}
+
+[data-density='compact'] .scripture-body {
+  --scripture-scale: 0.93;
+  --scripture-leading: 1.55;
+}
+
+[data-density='comfortable'] .scripture-body {
+  --scripture-scale: 1.07;
+  --scripture-leading: 1.8;
+  --reader-max: 47.5rem;
+}
+
+[data-typeface='serif'] .scripture-body {
+  font-family: var(--font-scripture);
+}
+
+[data-typeface='sans'] .scripture-body {
+  font-family: var(--font-sans);
+}
+
+/* ======================================================= reader layout */
+
+/* One centred reading column (720px, 760px at Large text size), padded 20px.
+   Every piece of the chapter - title, summary, stats, verses, footnotes -
+   lives inside this column; only the chapter head lines are centred within it.
+   The reader owns its own runway above the fixed tabbar (bar height + ~24px +
+   safe area) so the last verse and the chapter nav are never hidden, so the
+   generic #view-root bottom padding is turned off for this page. */
+.reader-shell {
+  max-width: var(--reader-max, 45rem);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  padding-bottom: calc(4rem + 1.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+.reader-split {
+  max-width: none;
+}
+
+/* Views re-render straight into #view-root, replacing #content-pad along with
+   its padding (the old h-16 spacer comes with it). Restore both:
+   - padding-top clears the fixed header (h-16 = 4rem, plus the same safe-area
+     the header uses), so the first block is never hidden behind it.
+   - padding-bottom keeps a foot of runway above the fixed tabbar so the last
+     card on any page can always be scrolled fully into view. */
+#view-root {
+  padding-top: calc(4rem + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* #content-pad also carried the reading column: max-w-3xl, mx-auto and 20px
+   side margins. Re-apply that to every view's top-level content. The reader
+   (`#view-root > .reader-shell`) sizes itself, `#listen-slot` is an empty
+   anchor for the fixed player, and already-bounded boxes (loading pad, error
+   states) are left alone.
+   Phones get a phone column; at desktop the column widens all the way so the
+   view uses the whole screen instead of leaving gutters of unused edge. */
+#view-root > *:not(.reader-shell):not(#listen-slot):not(.max-w-3xl):not(form) {
+  max-width: 48rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 48rem) {
+  #view-root > *:not(.reader-shell):not(#listen-slot):not(.max-w-3xl):not(form) {
+    max-width: 64rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  #view-root > *:not(.reader-shell):not(#listen-slot):not(.max-w-3xl):not(form) {
+    max-width: none;
+    padding-inline: 2rem;
+  }
+}
+
+/* The reader column owns its own bottom runway (see .reader-shell), so clear
+   the generic view bottom padding the moment a chapter is on screen. The fixed
+   header and its gold progress line are also lined up with the same centred
+   column, so on wide screens the back button, reference, icon buttons and the
+   progress bar sit directly above the reading column instead of at the screen
+   edges. The header row keeps a 16px horizontal pad and the safe-area top that
+   it already carries via .pt-safe. */
+body:has(.reader-shell) #view-root {
+  padding-bottom: 0;
+}
+
+body:has(.reader-shell) #app-header > div {
+  max-width: var(--reader-max, 45rem);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+body:has(.reader-shell) #header-progress {
+  max-width: var(--reader-max, 45rem);
+  margin-inline: auto;
+}
+
+/* While listening, the reader owns its own runway under the player. */
+body.listen-mode .reader-shell {
+  padding-bottom: 7.5rem;
+}
+
+body.listen-mode #view-root > *:not(.reader-shell):not(#listen-slot):not(.max-w-3xl):not(form) {
+  max-width: 48rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 48rem) {
+  body.listen-mode #view-root > *:not(.reader-shell):not(#listen-slot):not(.max-w-3xl):not(form) {
+    max-width: 64rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  body.listen-mode #view-root > *:not(.reader-shell):not(#listen-slot):not(.max-w-3xl):not(form) {
+    max-width: none;
+    padding-inline: 2rem;
+  }
+}
+
+/* ======================================================= listen player */
+
+/* The player docks at the bottom (above the tabbar). While it is up, the
+   chapter keeps a runway so its last verses are never hidden behind it, and
+   toasts float above the bar. */
+body.listen-mode .reader-shell {
+  padding-bottom: 7.5rem;
+}
+
+body.listen-mode #toast-root {
+  bottom: calc(11rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* While listening the fixed header is a curtain across the text (it can be
+   120px tall on notched phones once pt-safe is added). Once the chapter
+   heading has scrolled away, slide it fully out of the way so the whole
+   reading column stays visible; it returns at the top of the page. */
+body.listen-mode #app-header.is-scrolled {
+  transform: translateY(-100%);
+}
+
+#listen-player.is-idle #lp-toggle {
+  animation: none;
+}
+
+/* ======================================================== verse markup */
+
+/* One block per verse. The bottom margin is the only thing separating them. */
+.verse {
+  display: block;
+  margin: 0 0 1rem;
+  padding: 0;
+  text-indent: 0;
+  scroll-margin-top: 6rem;
+  border-radius: 3px;
+  transition: background-color 0.25s ease;
+}
+
+.verse:last-child {
+  margin-bottom: 0;
+}
+
+/* The numeral sits on the baseline in bold, sized just under the body text, and
+   takes the colour of the words around it. */
+.verse__num {
+  font-family: var(--font-scripture);
+  font-size: 16px;
+  font-weight: 700;
+  font-variant-numeric: lining-nums;
+  color: inherit;
+  line-height: inherit;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/* Markers are italic superscripts sitting flush against the word they precede;
+   only a run of consecutive markers gets any gap. */
+.verse__note {
+  font-family: var(--font-scripture);
+  font-size: 13px;
+  font-style: italic;
+  font-weight: 400;
+  color: inherit;
+  vertical-align: super;
+  line-height: 0;
+  margin-inline-start: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  position: relative;
+}
+
+/* line-height:0 collapses the box to zero height, which leaves the marker
+   untappable. Gospel Library hides the same collapse inside an anchor that
+   wraps the whole word; with no word anchor here, an invisible overlay
+   restores the tap target without moving the glyph. */
+.verse__note::after {
+  content: '';
+  position: absolute;
+  left: -5px;
+  width: calc(100% + 10px);
+  top: -9px;
+  height: 18px;
+}
+
+.verse__note + .verse__note {
+  margin-inline-start: 2px;
+}
+
+.verse__num:hover,
+.verse__note:hover {
+  text-decoration: underline;
+}
+
+.verse.is-selected {
+  background: rgb(var(--accent) / 0.16);
+  box-shadow: 0 0 0 2px rgb(var(--accent) / 0.16);
+}
+
+.verse.is-speaking {
+  background: rgb(var(--secondary-container) / 0.35);
+}
+
+.hl-gold { background: var(--hl-gold); }
+.hl-green { background: var(--hl-green); }
+.hl-blue { background: var(--hl-blue); }
+.hl-rose { background: var(--hl-rose); }
+
+mark.search-hit {
+  background: rgb(var(--secondary-container) / 0.55);
+  color: inherit;
+  border-radius: 3px;
+  padding: 0 0.1em;
+}
+
+/* ========================================================= chapter head */
+
+/* Chapter heading block. Every value here was measured on the live Gospel
+   Library classic-scripture page (1 Nephi 1) rather than inferred:
+     header        line-height 28.8px, margin-bottom 16px, text-align start
+     h1            18px / 21.6px, uppercase, 1.8px tracking, centred
+     .subtitle     16px / 19.2px, uppercase, 1.6px tracking, centred
+     .intro        18px / 28.8px, upright, 24px margins, LEFT aligned
+     .title-number 20px / 32px, uppercase, 2px tracking, centred, 8px below
+     .study-summary 18px / 28.8px, italic, LEFT aligned, no margin
+     small inside  14px / 16.8px, baseline, still italic
+   Note the summary and intro are left-aligned even though the chapter number
+   above them is centred — only the heading lines are centred. */
+.chapter-head {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.chapter-head__book {
+  font-family: var(--font-scripture);
+  font-size: 1.125rem;
+  font-weight: 400;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-align: center;
+  color: rgb(var(--on-surface));
+  margin: 0;
+}
+
+.chapter-head__subtitle {
+  font-family: var(--font-scripture);
+  font-size: 1rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-align: center;
+  color: rgb(var(--on-surface));
+  margin: 0;
+}
+
+.chapter-head__intro {
+  font-family: var(--font-scripture);
+  font-size: 1.125rem;
+  font-style: normal;
+  line-height: 1.6;
+  color: rgb(var(--on-surface));
+  margin: 1.5rem 0;
+  text-wrap: pretty;
+}
+
+.chapter-head__num {
+  font-family: var(--font-scripture);
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.6;
+  text-align: center;
+  color: rgb(var(--on-surface));
+  margin: 0 0 0.5rem;
+  text-wrap: balance;
+}
+
+/* The Gospel Library study summary keeps the same column width as the verses
+   (the whole .reader-shell is the measure now), set a step smaller than the
+   18px scripture text, in a muted colour on a relaxed 1.55 line-height. Its
+   <small> spans carry the date qualifiers ("B.C.", "A.D."). */
+.chapter-head__summary {
+  font-family: var(--font-scripture);
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.55;
+  color: rgb(var(--on-surface-variant));
+  margin: 0;
+  text-indent: 0;
+  text-wrap: pretty;
+}
+
+.chapter-head__summary small {
+  font-size: 0.7778em;
+  line-height: 1.2;
+}
+
+/* OT/NT cross-references. This app ships only the Book of Mormon, so the build
+   script drops the href and leaves a plain citation rather than a link that
+   would lead to a page it cannot render. */
+.chapter-head__summary cite {
+  font-style: italic;
+  color: rgb(var(--on-surface-variant));
+}
+
+.chapter-head__summary a.sum-ref {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.chapter-head__meta {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: rgb(var(--on-surface-variant));
+  margin-top: 1rem;
+  text-wrap: balance;
+}
+
+/* ===================================================== chapter footnotes */
+
+/* Notes collect at the foot of the chapter, the way they do on paper. */
+.footnotes__heading {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(var(--accent));
+  padding-bottom: 0.5rem;
+}
+
+.footnotes {
+  font-family: var(--font-serif);
+  font-size: 0.84em;
+  line-height: 1.62;
+  color: rgb(var(--on-surface-variant));
+  max-width: none;
+  margin-top: 0.25rem;
+}
+
+.footnotes__item {
+  display: flex;
+  gap: 0.5rem;
+  padding-block: 0.4rem;
+  border-top: 1px solid rgb(var(--outline-variant) / 0.55);
+}
+
+.footnotes__marker {
+  font-family: var(--font-sans);
+  font-size: 0.72em;
+  font-weight: 700;
+  color: rgb(var(--accent));
+  flex: none;
+  padding-top: 0.28em;
+}
+
+.footnotes__item a:hover .footnotes__text {
+  color: rgb(var(--accent));
+}
+
+/* ============================================== collapsible chapter notes */
+
+/* The note list is closed by default. A tappable gold header row (48px, navy
+   hairline above) opens it; the list slides out of a 0fr grid row so the
+   toggle animates smoothly and honours prefers-reduced-motion. */
+.chapter-notes {
+  margin-top: 2.5rem;
+  border-top: 1px solid rgb(var(--primary) / 0.35);
+}
+
+.chapter-notes__toggle {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 48px;
+  padding-block: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(var(--accent));
+}
+
+.chapter-notes__toggle::-webkit-details-marker { display: none; }
+
+.chapter-notes__toggle:hover {
+  color: rgb(var(--secondary));
+}
+
+.chapter-notes__toggle:focus-visible {
+  outline: 2px solid rgb(var(--accent) / 0.65);
+  outline-offset: 2px;
+  border-radius: 0.25rem;
+}
+
+.chapter-notes__count {
+  color: rgb(var(--on-surface-variant));
+  letter-spacing: 0.04em;
+}
+
+.chapter-notes__chevron {
+  margin-left: auto;
+  transition: transform 200ms ease;
+}
+
+.chapter-notes[open] > .chapter-notes__toggle .chapter-notes__chevron {
+  transform: rotate(180deg);
+}
+
+.chapter-notes[open] > .chapter-notes__toggle {
+  border-bottom: 1px solid rgb(var(--accent) / 0.35);
+}
+
+.chapter-notes__body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 200ms ease;
+}
+
+.chapter-notes[open] > .chapter-notes__body {
+  grid-template-rows: 1fr;
+}
+
+.chapter-notes__inner {
+  min-height: 0;
+  overflow: hidden;
+  padding-bottom: 0.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chapter-notes__body,
+  .chapter-notes__chevron {
+    transition: none;
+  }
+}
+
+/* the brief gold wash a footnote letter leaves on its note after jumping */
+.footnotes__item.is-selected {
+  background: rgb(var(--accent) / 0.14);
+  border-radius: 0.25rem;
+}
+
+/* ========================================================= study aids */
+
+/* The fixed header is the only thing naming the chapter once the big heading
+   has scrolled away, so it lifts slightly when that happens. */
+#app-header.is-scrolled {
+  box-shadow: 0 1px 0 rgb(var(--outline-variant) / 0.9), 0 6px 20px rgb(var(--shadow) / 0.1);
+  backdrop-filter: blur(16px);
+}
+
+/* ============================================================ branding */
+
+/* The Liahona mark in the header: a 44px round photo with a thin gold rim and
+   a soft gold glow. A muted gold icon circle sits behind it as a fallback, so
+   if assets/liahona.png is missing or fails the layout never collapses. */
+.liahona-logo-wrap {
+  position: relative;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 9999px;
+}
+
+.liahona-logo,
+.liahona-logo-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+}
+
+.liahona-logo {
+  z-index: 1;
+  object-fit: cover;
+  border: 2px solid rgb(var(--accent));
+  box-shadow:
+    0 0 0 1px rgb(var(--surface) / 0.7),
+    0 4px 14px rgb(var(--accent) / 0.3);
+  background-color: rgb(var(--surface-container-high));
+}
+
+.liahona-logo-fallback {
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(var(--secondary-container) / 0.35);
+  color: rgb(var(--secondary));
+  pointer-events: none;
+}
+
+/* Home hero banner: the date/greeting/tagline row sits on a picture band that
+   fades into the page background so the text stays readable in every theme.
+   The photo loads from assets/header-bg.jpg; if it is missing only the theme
+   gradient shows. Rounded corners clip the decorative band (overflow hidden)
+   instead of letting it poke past the content column. Small screens get a
+   shorter band so the greeting is not pushed down; larger ones a taller one. */
+.liahona-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 8rem;
+  margin-top: 0.25rem;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background-color: rgb(var(--surface-dim));
+  background-image:
+    linear-gradient(180deg, rgb(var(--surface-bright) / 0.6), rgb(var(--surface)) 92%),
+    url('assets/header-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgb(var(--outline-variant) / 0.7);
+}
+
+@media (min-width: 640px) {
+  .liahona-hero {
+    min-height: 10rem;
+  }
+}
+
+/* ====================================================== settings (Appearance)
+   Styling for the Appearance card on the Settings page. The other cards keep
+   using the shared section()/row() helpers; only these classes are new. */
+.settings-card {
+  background-color: rgb(var(--surface-container-low));
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px -2px rgb(var(--shadow) / 0.06), 0 1px 3px 0 rgb(var(--shadow) / 0.04);
+  overflow: hidden;
+}
+
+.settings-card__header {
+  padding: 1.25rem 1.25rem 0.875rem;
+}
+
+.settings-card__body {
+  padding: 0 1.25rem 1.25rem;
+}
+
+/* One preference per row: label + options. Inner spacing between rows comes
+   from padding plus the thin divider, keeping ~20px of air between them. */
+.setting-row {
+  padding: 0.625rem 0;
+}
+
+.setting-row + .setting-row {
+  border-top: 1px solid rgb(var(--outline-variant) / 0.7);
+}
+
+.setting-row__label {
+  margin-bottom: 0.625rem;
+}
+
+.setting-row__control {
+  width: 100%;
+}
+
+/* Segmented control: equal-width pill buttons filling the full row. */
+.seg {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.seg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgb(var(--outline-variant) / 0.9);
+  background-color: rgb(var(--surface-container-lowest));
+  color: rgb(var(--on-surface-variant));
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease,
+    color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.seg-btn .material-symbols-outlined {
+  font-size: 18px;
+  flex: none;
+}
+
+.seg-btn:hover {
+  background-color: rgb(var(--surface-container-high));
+  border-color: rgb(var(--accent) / 0.45);
+  color: rgb(var(--on-surface));
+}
+
+.seg-btn:focus-visible {
+  outline: 2px solid rgb(var(--accent) / 0.55);
+  outline-offset: 2px;
+}
+
+.seg-btn.is-active {
+  border-color: rgb(var(--accent));
+  background-color: rgb(var(--accent) / 0.14);
+  color: rgb(var(--accent));
+  box-shadow: 0 0 0 1px rgb(var(--accent) / 0.35);
+}
+
+/* At narrow phone widths keep all three options on a single row. */
+@media (max-width: 460px) {
+  .seg {
+    gap: 6px;
+  }
+  .seg-btn {
+    min-height: 44px;
+    padding: 9px 7px;
+    gap: 3px;
+    font-size: 0.8125rem;
+  }
+}
+
+/* Wide screens: label on the left, options on the right (not squeezed). */
+@media (min-width: 700px) {
+  .setting-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: 1.25rem;
+    align-items: center;
+  }
+  .setting-row__label {
+    margin-bottom: 0;
+  }
+}
+
+.study-aids > summary {
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(var(--accent));
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-block: 0.5rem;
+}
+
+.study-aids > summary::-webkit-details-marker { display: none; }
+
+.study-aids > summary .chevron { transition: transform 0.2s ease; }
+
+.study-aids[open] > summary .chevron { transform: rotate(180deg); }
+
+/* tapered divider, reminiscent of a lithographic press mark */
+.rule-taper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgb(var(--outline-variant));
+}
+
+.rule-taper::before,
+.rule-taper::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to right, transparent, currentColor, transparent);
+}
+
+/* "1 Nephi" book selector: a proper pill with a subtle border, gold icon text
+   and the chevron beside the label, large enough to tap comfortably. */
+.book-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 1px solid rgb(var(--outline-variant) / 0.8);
+  border-radius: 999px;
+  background-color: rgb(var(--surface-container-low) / 0.6);
+  color: rgb(var(--secondary));
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.book-pill .material-symbols-outlined {
+  color: rgb(var(--accent));
+  flex: none;
+}
+
+.book-pill:hover,
+.book-pill:focus-visible {
+  background-color: rgb(var(--surface-container-high));
+  border-color: rgb(var(--accent) / 0.5);
+}
+
+/* ============================================================== motion */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(0.5rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================== a11y */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  #app-header, #tabbar, #sheet-root, #toast-root, .no-print { display: none !important; }
+  body { background: #fff; }
+}
+
+/* Ask owns the bottom strip: the composer stacks right above the tabbar and
+   content clears both. app.js toggles body.ask-mode per route. */
+body.ask-mode #ask-form {
+  bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+}
+body.ask-mode #content-pad {
+  padding-bottom: calc(8.5rem + env(safe-area-inset-bottom, 0px));
+}

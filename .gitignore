@@ -1,0 +1,26 @@
+# local credentials — never commit
+.env
+.env.deploy
+.vercel
+supabase/.temp
+*.local.json
+
+# scratch / build artifacts
+$t
+.cache/
+.claude/
+.playwright/
+.playwright-cli/
+test-results/
+poll-response.json
+screen.png
+code.html
+
+# dependencies / tooling
+node_modules/
+package-lock.json
+
+# os / editor
+.DS_Store
+Thumbs.db
+*.log
